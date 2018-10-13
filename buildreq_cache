@@ -1,0 +1,5 @@
+1.01
+perl(Sub::Uplevel)
+perl(Test::Warn)
+pkgconfig(zlib)
+zlib-dev

@@ -4,17 +4,15 @@
 #
 Name     : perl-Audio-Scan
 Version  : 1.01
-Release  : 3
+Release  : 4
 URL      : https://cpan.metacpan.org/authors/id/A/AG/AGRUNDMA/Audio-Scan-1.01.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/A/AG/AGRUNDMA/Audio-Scan-1.01.tar.gz
 Summary  : 'Fast C metadata and tag reader for all common audio file formats'
 Group    : Development/Tools
 License  : GPL-2.0
-Requires: perl-Audio-Scan-lib
-Requires: perl-Audio-Scan-license
-Requires: perl-Audio-Scan-man
-Requires: perl(Sub::Uplevel)
-Requires: perl(Test::Warn)
+Requires: perl-Audio-Scan-lib = %{version}-%{release}
+Requires: perl-Audio-Scan-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 BuildRequires : perl(Sub::Uplevel)
 BuildRequires : perl(Test::Warn)
 BuildRequires : pkgconfig(zlib)
@@ -25,10 +23,20 @@ NAME
 Audio::Scan - Fast C metadata and tag reader for all common audio file
 formats
 
+%package dev
+Summary: dev components for the perl-Audio-Scan package.
+Group: Development
+Requires: perl-Audio-Scan-lib = %{version}-%{release}
+Provides: perl-Audio-Scan-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Audio-Scan package.
+
+
 %package lib
 Summary: lib components for the perl-Audio-Scan package.
 Group: Libraries
-Requires: perl-Audio-Scan-license
+Requires: perl-Audio-Scan-license = %{version}-%{release}
 
 %description lib
 lib components for the perl-Audio-Scan package.
@@ -40,14 +48,6 @@ Group: Default
 
 %description license
 license components for the perl-Audio-Scan package.
-
-
-%package man
-Summary: man components for the perl-Audio-Scan package.
-Group: Default
-
-%description man
-man components for the perl-Audio-Scan package.
 
 
 %prep
@@ -75,12 +75,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-Audio-Scan
-cp COPYING %{buildroot}/usr/share/doc/perl-Audio-Scan/COPYING
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Audio-Scan
+cp COPYING %{buildroot}/usr/share/package-licenses/perl-Audio-Scan/COPYING
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -89,16 +89,16 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Audio/Scan.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Audio/Scan.pm
+
+%files dev
+%defattr(-,root,root,-)
+/usr/share/man/man3/Audio::Scan.3
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/auto/Audio/Scan/Scan.so
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/Audio/Scan/Scan.so
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-Audio-Scan/COPYING
-
-%files man
-%defattr(-,root,root,-)
-/usr/share/man/man3/Audio::Scan.3
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Audio-Scan/COPYING
