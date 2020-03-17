@@ -4,7 +4,7 @@
 #
 Name     : perl-Audio-Scan
 Version  : 1.01
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/A/AG/AGRUNDMA/Audio-Scan-1.01.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/A/AG/AGRUNDMA/Audio-Scan-1.01.tar.gz
 Summary  : 'Fast C metadata and tag reader for all common audio file formats'
@@ -101,5 +101,5 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Audio/Scan.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/auto/Audio/Scan/Scan.so
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Audio/Scan.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/auto/Audio/Scan/Scan.so
