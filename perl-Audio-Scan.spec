@@ -4,7 +4,7 @@
 #
 Name     : perl-Audio-Scan
 Version  : 1.01
-Release  : 16
+Release  : 17
 URL      : https://cpan.metacpan.org/authors/id/A/AG/AGRUNDMA/Audio-Scan-1.01.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/A/AG/AGRUNDMA/Audio-Scan-1.01.tar.gz
 Summary  : 'Fast C metadata and tag reader for all common audio file formats'
