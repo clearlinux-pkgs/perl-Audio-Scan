@@ -1,4 +1,5 @@
 1.01
+perl(Digest::MD5)
 perl(Sub::Uplevel)
 perl(Test::Warn)
 pkgconfig(zlib)
